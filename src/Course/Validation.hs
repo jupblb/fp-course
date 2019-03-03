@@ -3,8 +3,9 @@
 
 module Course.Validation where
 
-import qualified Prelude as P(String)
-import Course.Core
+import qualified Prelude                       as P
+                                                ( String )
+import           Course.Core
 
 --  class Validation<A> {
 --    Validation(String error) {} // Error

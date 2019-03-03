@@ -1,2 +1,2 @@
-resolver: lts-9.21
+resolver: lts-12.16
 name: fp-course

@@ -20,7 +20,7 @@ homepage: https://github.com/bitemyapp/fp-course
 git: git@github.com:bitemyapp/fp-course.git
 bug-reports: https://github.com/bitemyapp/fp-course/issues
 
-tested-with: GHC==8.0.2
+tested-with: GHC==8.4.4
 
 extra-source-files:
 - etc/CONTRIBUTORS
