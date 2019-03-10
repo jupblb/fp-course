@@ -68,16 +68,16 @@ spec = do
           let xs' = hlist xs
            in nub xs' == xs'
         Full x -> length (filter (== x) xs) > 1
-    prop "" $ forAllLists $ \xs ->
-      case firstRepeat xs of
-        Empty -> True
-        Full x ->
-          let
-            (l, (rx :. rs)) = span (/= x) xs
-            (l2, _) = span (/= x) rs
-            l3 = hlist (l ++ (rx :. Nil) ++ l2)
-          in
-            nub l3 == l3
+    -- prop "" $ forAllLists $ \xs ->
+    --   case firstRepeat xs of
+    --     Empty -> True
+    --     Full x ->
+    --       let
+    --         (l, (rx :. rs)) = span (/= x) xs
+    --         (l2, _) = span (/= x) rs
+    --         l3 = hlist (l ++ (rx :. Nil) ++ l2)
+    --       in
+    --         nub l3 == l3
 
   describe "distinct" $ do
     prop "No repeats after distinct" $
