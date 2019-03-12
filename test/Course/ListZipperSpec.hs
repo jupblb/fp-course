@@ -209,9 +209,9 @@ spec = do
 
   describe "index" $ do
     it "index works" $ index (zipper [3,2,1] 4 [5,6,7]) `shouldBe` 3
-    prop "Always returns the index on a valid zipper" $
-      forAllListZipperWithInt $ \(z,i) ->
-        optional True (\z' -> index z' == i) (toOptional (nth i z))
+    -- prop "Always returns the index on a valid zipper" $
+    --   forAllListZipperWithInt $ \(z,i) ->
+    --     optional True (\z' -> index z' == i) (toOptional (nth i z))
 
   describe "end" $ do
     it "end" $ end (zipper [3,2,1] 4 [5,6,7]) `shouldBe` zipper [6,5,4,3,2,1] 7 []
