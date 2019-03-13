@@ -191,12 +191,13 @@ instance Applicative Parser where
 -- >>> parse (list (character *> valueParser 'v')) ""
 -- Result >< ""
 list :: Parser a -> Parser (List a)
-list (P p) = P (foo Nil)
- where
-  foo acc Nil         = Result Nil acc
-  foo acc i@(_ :. xs) = case p i of
-    Result _ a' -> foo (acc ++ a' :. Nil) xs
-    _           -> Result i acc
+-- list (P p) = P (foo Nil)
+--  where
+--   foo acc Nil         = Result Nil acc
+--   foo acc i@(_ :. xs) = case p i of
+--     Result _ a' -> foo (acc ++ a' :. Nil) xs
+--     _           -> Result i acc
+list p = list1 p ||| valueParser Nil
 
 -- | Return a parser that produces at least one value from the given parser then
 -- continues producing a list of values from the given parser (to ultimately produce a non-empty list).
@@ -212,7 +213,8 @@ list (P p) = P (foo Nil)
 -- >>> isErrorResult (parse (list1 (character *> valueParser 'v')) "")
 -- True
 list1 :: Parser a -> Parser (List a)
-list1 p = (\ls -> if isEmpty ls then constantParser UnexpectedEof else pure ls) =<< list p
+-- list1 p = (\ls -> if isEmpty ls then constantParser UnexpectedEof else pure ls) =<< list p
+list1 p = p >>= \p' -> list p >>= \ps -> pure (p' :. ps)
 
 -- | Return a parser that produces a character but fails if
 --
